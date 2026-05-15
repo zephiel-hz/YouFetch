@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouFetch - Download & Convert YouTube</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <main class="page-layout">
+      <section class="hero-card">
+        <div class="hero-badge">
+          <div class="hero-icon">▶</div>
+        </div>
+        <div class="hero-copy">
+          <h1>YouFetch</h1>
+          <p>Unduh, potong, dan konversi video YouTube menjadi MP4 atau MP3 dengan tampilan modern dan cepat.</p>
+        </div>
+      </section>
+
+      <section class="panel panel-input">
+        <div class="panel-row">
+          <div class="input-field">
+            <label for="url">Tautan YouTube</label>
+            <div class="input-with-icon">
+              <span class="icon">🔗</span>
+              <input id="url" type="text" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off">
+            </div>
+          </div>
+          <button id="fetchButton" class="button-primary">Ambil Info</button>
+        </div>
+
+        <div class="feedback-row" id="errorMessage"></div>
+      </section>
+
+      <section class="workspace-grid" id="workspaceSection" hidden>
+        <div class="panel panel-preview">
+          <div class="thumbnail-card">
+            <iframe
+              id="videoEmbed"
+              src=""
+              title="Preview video YouTube"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="preview-meta">
+            <div class="meta-row">
+              <span id="durationLabel">Durasi: 00:00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-settings">
+          <div class="panel-header">
+            <div class="panel-header-icon">⚙️</div>
+            <div>
+              <p class="panel-title">Pengaturan Unduhan</p>
+              <p class="panel-subtitle">Pilih opsi sebelum mulai proses.</p>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <label>Pilih Format</label>
+            <div class="format-grid" id="formatButtons">
+              <button type="button" data-format="mp4" class="format-option active">Video<span>MP4</span></button>
+              <button type="button" data-format="mp3" class="format-option">Audio<span>MP3</span></button>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <label>Pilih Kualitas</label>
+            <select id="qualitySelect" class="select-field"></select>
+          </div>
+
+          <div class="settings-group">
+            <div class="flex-between">
+              <label>Potong Video (Opsional)</label>
+              <button id="toggleTrim" class="toggle-button" type="button"><span id="toggleThumb"></span></button>
+            </div>
+            <div class="trim-fields" id="trimFields" hidden>
+              <div>
+                <label for="start">Mulai</label>
+                <input id="start" type="text" value="00:00:00" placeholder="HH:MM:SS">
+              </div>
+              <div>
+                <label for="end">Selesai</label>
+                <input id="end" type="text" value="00:01:00" placeholder="HH:MM:SS">
+              </div>
+            </div>
+            <div class="trim-preview" id="trimPreview" hidden>
+              <span>Preview: <strong id="trimTimeDisplay">00:00:00 - 00:01:00</strong></span>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <button id="processButton" class="button-action">Proses & Siapkan Unduhan</button>
+            <div class="progress-bar" id="progressBar" hidden>
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        <p>Aplikasi ini bisa terhubung ke backend untuk mengunduh file asli. Saat ini UI menunjukan progress dan memudahkan proses.</p>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

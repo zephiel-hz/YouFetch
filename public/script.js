@@ -239,3 +239,5 @@ function triggerDownload(url, filename) {
 workspaceSection.hidden = true;
 setFormat('mp4');
 setTrimState(false);
+
+console.log('YouFetch build version: 20260515.3');

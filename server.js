@@ -14,7 +14,13 @@ const tempRoot = path.join(os.tmpdir(), 'youfetch-temp');
 
 app.use(express.json({ limit: '10mb' }));
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+  next();
+});
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 0 }));
 
 async function ensureTempDir() {
   try {

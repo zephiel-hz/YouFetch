@@ -1,3 +1,5 @@
 {
-  "buildAptPackages": ["python3", "python-is-python3"]
+  "buildAptPackages": ["python3", "python-is-python3"],
+  "installCommand": "npm ci",
+  "startCommand": "npm run start"
 }
